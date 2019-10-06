@@ -1,0 +1,13 @@
+node_modules
+dist
+build/*
+!build/.gitkeep
+.DS_Store
+npm-debug.log
+*~
+___*
+._*
+.idea
+.vscode
+.remote-sync.json
+src/**/*.css.d.ts

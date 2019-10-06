@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  /* font-family: "Arial", */
+    /* sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background);
+}
+
+#infinite-tic-tac-toe {
+  background-color: #f5f5f5;
+  height: 100%;
+  display: flex;
+  /* display: grid; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

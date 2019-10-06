@@ -1,0 +1,41 @@
+.cell {
+	cursor: pointer;
+	position: relative;
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	background: #eaeaea;
+	margin: 3px;
+	border-radius: 3px;
+	transition: background-color 0.25s;
+	box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+
+.cell:hover {
+	background: #e2e2e2;
+}
+
+.cellIcon:before {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 100px;
+}
+
+.cellCross:before {
+	content: '×';
+	position: absolute;
+	color: #039be5;
+}
+
+.cellCircle:before {
+	content: '○';
+	color: #ef5350;
+	position: absolute;
+}
+
+.cellOutlined {
+	box-shadow: 0 0 0 1px #039be5;
+}

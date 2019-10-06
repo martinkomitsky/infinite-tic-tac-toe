@@ -1,0 +1,24 @@
+.app {
+	display: flex;
+	background-color: white;
+	justify-content: center;
+	font-size: 15px;
+}
+
+.container {
+	width: 100%;
+}
+
+.field {
+	display: grid;
+	grid-gap: 1px;
+}
+
+.inputContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.row {
+	display: flex;
+}

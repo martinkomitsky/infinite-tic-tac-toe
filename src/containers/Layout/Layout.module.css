@@ -1,0 +1,13 @@
+.root {
+	width: 100%;
+}
+
+.content {
+	display: flex;
+	height: 100%;
+	justify-content: center;
+}
+
+.contentWrapper {
+	height: 100%;
+}
