@@ -125,6 +125,9 @@
 		]
 	},
 	"jest": {
+		"globals": {
+			"C": 5
+		},
 		"setupFiles": [
 			"<rootDir>/tests/setup/test-shim.js",
 			"<rootDir>/tests/setup/test-setup.js"
