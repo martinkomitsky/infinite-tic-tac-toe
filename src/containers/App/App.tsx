@@ -1,4 +1,4 @@
-// import classnames from 'classnames';
+import classnames from 'classnames';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Card } from '../../components/Card';
@@ -12,7 +12,6 @@ import * as T from './App.types';
 
 class App extends React.Component<T.IAppProps, {}> {
 	public handleClick = (index: [number, number]) => {
-		console.log(index);
 		const { appState } = this.props;
 		if (!appState) {
 			return null;
@@ -52,7 +51,6 @@ class App extends React.Component<T.IAppProps, {}> {
 			}
 
 			if (winner) {
-				console.log(`${turn ? 'cross' : 'circle'} is a winner!`);
 				setTimeout(() => {
 					this.resetState();
 				}, 2500);
@@ -144,12 +142,50 @@ class App extends React.Component<T.IAppProps, {}> {
 	public handleYchange = this.handleInputChange.bind(null, 'y');
 
 	public render() {
-		console.log(this.props);
 		const { appState } = this.props;
 		if (!appState) {
 			return null;
 		}
-		const { initialX, initialY, numberInARow, isFirstTurn } = appState;
+		const {
+			initialX,
+			initialY,
+			numberInARow,
+			isFirstTurn,
+			isFinished,
+			turn,
+		} = appState;
+
+		const fieldClassNames = classnames(s.field, {
+			[s.fieldFinished]: isFinished,
+		});
+		const overlayClassNames = classnames(s.fieldWinOverlay, {
+			[s.fieldWinOverlayShown]: isFinished,
+			[s.fieldWinOverlayBlue]: isFinished && !turn,
+			[s.fieldWinOverlayRed]: isFinished && turn,
+		});
+		const winPhrase = `${!turn ? 'Crosses' : 'Circles'} have won!`;
+
+		const field = (
+			<div className={s.inputContainer}>
+				<input
+					type="number"
+					value={initialX}
+					onChange={this.handleXchange}
+				/>
+				<input
+					type="number"
+					value={initialY}
+					onChange={this.handleYchange}
+				/>
+				<input
+					type="number"
+					min="1"
+					value={numberInARow}
+					onChange={this.handleNumberInARowChange}
+					disabled={!isFirstTurn}
+				/>
+			</div>
+		);
 
 		return (
 			<div className={s.app}>
@@ -157,25 +193,12 @@ class App extends React.Component<T.IAppProps, {}> {
 					<Layout>
 						<Card>
 							<React.Fragment>
-								{this.renderRows()}
-								<div className={s.inputContainer}>
-									<input
-										type="number"
-										value={initialX}
-										onChange={this.handleXchange}
-									/>
-									<input
-										type="number"
-										value={initialY}
-										onChange={this.handleYchange}
-									/>
-									<input
-										type="number"
-										min="1"
-										value={numberInARow}
-										onChange={this.handleNumberInARowChange}
-										disabled={!isFirstTurn}
-									/>
+								<div className={fieldClassNames}>
+									{this.renderRows()}
+									{field}
+								</div>
+								<div className={overlayClassNames}>
+									{winPhrase}
 								</div>
 							</React.Fragment>
 						</Card>

@@ -10,8 +10,44 @@
 }
 
 .field {
-	display: grid;
-	grid-gap: 1px;
+	transition: filter 0.4s ease;
+	position: relative;
+}
+
+.fieldFinished {
+	filter: blur(10px);
+}
+
+.fieldWinOverlay {
+	font-family: 'Roboto', sans-serif;
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border: 1px solid;
+	left: 0;
+	top: 0;
+	justify-content: center;
+	align-items: center;
+	font-size: 8rem;
+	text-shadow: 1px 0 1px #ccc, 0 1px 1px #eee, 2px 1px 1px #ccc,
+		1px 2px 1px #eee, 3px 2px 1px #ccc, 2px 3px 1px #eee, 4px 3px 1px #ccc,
+		3px 4px 1px #eee, 5px 4px 1px #ccc, 4px 5px 1px #eee, 6px 5px 1px #ccc,
+		5px 6px 1px #eee, 7px 6px 1px #ccc;
+}
+
+.fieldWinOverlayShown {
+	display: flex;
+}
+
+.fieldWinOverlayRed {
+	border-color: var(--color-red);
+	color: var(--color-red);
+}
+
+.fieldWinOverlayBlue {
+	border-color: var(--color-blue);
+	color: var(--color-blue);
 }
 
 .inputContainer {

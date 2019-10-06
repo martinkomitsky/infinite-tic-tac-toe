@@ -15,24 +15,25 @@
 	background: #e2e2e2;
 }
 
-.cellIcon:before {
+.cellIcon::before {
 	width: 100%;
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 100px;
+	text-shadow: -1px -1px 10px rgba(150, 150, 150, 0.7);
 }
 
-.cellCross:before {
+.cellCross::before {
 	content: '×';
 	position: absolute;
-	color: #039be5;
+	color: var(--color-blue);
 }
 
-.cellCircle:before {
+.cellCircle::before {
 	content: '○';
-	color: #ef5350;
+	color: var(--color-red);
 	position: absolute;
 }
 
