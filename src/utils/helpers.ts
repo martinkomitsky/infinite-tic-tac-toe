@@ -1,3 +1,5 @@
+import { ISelected } from '../types';
+
 export const noop = (data: any) => data;
 
 export const makeDiv = (params: { id: string }) => {
@@ -11,15 +13,18 @@ export const appendElementToBody = (element: HTMLElement) => {
 	body.appendChild(element);
 };
 
-interface TSelected {
-	[key: string]: boolean;
-}
-
-interface ICheckWindowArguments {
+interface ICheckWinArguments {
 	x: number;
 	y: number;
-	selected: TSelected;
+	selected: ISelected;
 	numberInARow: number;
+}
+
+interface ICheckLineArguments {
+	x: number;
+	y: number;
+	dx: number;
+	dy: number;
 }
 
 export const checkWin = ({
@@ -27,43 +32,44 @@ export const checkWin = ({
 	y,
 	selected,
 	numberInARow: N,
-}: ICheckWindowArguments) => {
+}: ICheckWinArguments) => {
 	const getFig = ({ x: xCoord, y: yCoord }: { x: number; y: number }) =>
 		selected[`${xCoord}:${yCoord}`];
 
 	const newFig = getFig({ x, y });
 
-	const checkLine = (x: number, y: number, dx: number, dy: number) => {
+	const checkLine = ({
+		x: xCoord,
+		y: yCoord,
+		dx,
+		dy,
+	}: ICheckLineArguments) => {
 		let score = 0;
-		console.group(dx, dy);
-		console.log('checking', x, y);
+		let localX = xCoord;
+		let localY = yCoord;
 
-		while (getFig({ x: x - dx, y: y - dy }) === newFig) {
-			x -= dx;
-			y -= dy;
-			console.log(x, y, '-');
+		while (getFig({ x: localX - dx, y: localY - dy }) === newFig) {
+			localX -= dx;
+			localY -= dy;
 		}
 
-		while (getFig({x, y}) === newFig) {
-			console.log(x, y, '+');
-			x += dx;
-			y += dy;
-			score++;
+		while (getFig({ x: localX, y: localY }) === newFig) {
+			localX += dx;
+			localY += dy;
+			score += 1;
 		}
 
 		if (score === N) {
-			console.groupEnd();
 			return true;
 		}
-		console.groupEnd();
 		return false;
 	};
 	let res = null;
 
-	res = res || checkLine(x, y, 1, 0); // horizontal
-	res = res || checkLine(x, y, 0, 1); // vertical
-	res = res || checkLine(x, y, 1, 1); // diagonal 45
-	res = res || checkLine(x, y, 1, -1); // diagonal 135
+	res = res || checkLine({ x, y, dx: 1, dy: 0 }); // horizontal
+	res = res || checkLine({ x, y, dx: 0, dy: 1 }); // vertical
+	res = res || checkLine({ x, y, dx: 1, dy: 1 }); // diagonal 45
+	res = res || checkLine({ x, y, dx: 1, dy: -1 }); // diagonal 135
 
 	return res;
 };
