@@ -34,6 +34,8 @@
 
 ```bash
 npm start
+// или
+npm run storybook
 ```
 
 ### Сборка
