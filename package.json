@@ -28,7 +28,10 @@
 		"Martin Komitsky <m.komitsky@corp.mail.ru> (https://github.com/martinkomitsky)"
 	],
 	"license": "UNLICENSED",
-	"dependencies": {},
+	"dependencies": {
+		"@types/react-redux": "^7.1.4",
+		"react-redux": "^7.1.1"
+	},
 	"devDependencies": {
 		"@storybook/addon-a11y": "5.0.11",
 		"@storybook/addon-actions": "5.0.11",

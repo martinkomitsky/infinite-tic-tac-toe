@@ -1,3 +1,5 @@
+export * from './store';
+
 export interface IIndexedObject {
 	[key: string]: any;
 }

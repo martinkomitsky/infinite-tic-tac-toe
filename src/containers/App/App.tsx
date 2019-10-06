@@ -1,37 +1,29 @@
 // import classnames from 'classnames';
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Card } from '../../components/Card';
 import { Cell } from '../../components/Cell';
+import { IAppStore, initialState, setAppState } from '../../store';
 import '../../types';
 import { checkWin } from '../../utils';
 import Layout from '../Layout';
 import * as s from './App.module.css';
 import * as T from './App.types';
 
-const initialState = {
-	columns: 11,
-	initialX: -5,
-	initialY: -5,
-	isFinished: false,
-	isFirstTurn: true,
-	numberInARow: C || 5,
-	rows: 11,
-	selected: {},
-	turn: true,
-};
-
-class App extends React.Component<{}, T.IAppState> {
-	public state: T.IAppState = initialState;
-
+class App extends React.Component<T.IAppProps, {}> {
 	public handleClick = (index: [number, number]) => {
 		console.log(index);
+		const { appState } = this.props;
+		if (!appState) {
+			return null;
+		}
 		const {
 			turn,
 			selected,
 			isFirstTurn,
 			numberInARow,
 			isFinished,
-		} = this.state;
+		} = appState;
 		const [x, y] = index;
 		const coordinates = `${x}:${y}`;
 
@@ -53,10 +45,10 @@ class App extends React.Component<{}, T.IAppState> {
 
 			if (isFirstTurn) {
 				if (x === 0 && y === 0) {
-					this.setState({ ...newState, isFirstTurn: false });
+					this.setAppState({ ...newState, isFirstTurn: false });
 				}
 			} else {
-				this.setState(newState);
+				this.setAppState(newState);
 			}
 
 			if (winner) {
@@ -68,10 +60,21 @@ class App extends React.Component<{}, T.IAppState> {
 		}
 	};
 
-	private resetState = () => this.setState(initialState);
+	private setAppState = (state: any) => {
+		const { setAppState: setState } = this.props;
+		if (setState) {
+			setState(state);
+		}
+	};
+
+	private resetState = () => this.setAppState(initialState);
 
 	public renderColumns = (rowIndex: number) => {
-		const { columns, initialY, isFirstTurn, selected } = this.state;
+		const { appState } = this.props;
+		if (!appState) {
+			return null;
+		}
+		const { columns, initialY, isFirstTurn, selected } = appState;
 		const columnElements: React.ReactElement[] = [];
 
 		let colIndex = initialY;
@@ -92,7 +95,11 @@ class App extends React.Component<{}, T.IAppState> {
 	};
 
 	public renderRows = () => {
-		const { rows, initialX } = this.state;
+		const { appState } = this.props;
+		if (!appState) {
+			return null;
+		}
+		const { rows, initialX } = appState;
 
 		const jsx: React.ReactElement[] = [];
 
@@ -114,11 +121,11 @@ class App extends React.Component<{}, T.IAppState> {
 	) => {
 		const value = event.target.value;
 		if (type === 'x') {
-			this.setState({
+			this.setAppState({
 				initialX: +value,
 			});
 		} else {
-			this.setState({
+			this.setAppState({
 				initialY: +value,
 			});
 		}
@@ -128,7 +135,7 @@ class App extends React.Component<{}, T.IAppState> {
 		event: React.ChangeEvent<HTMLInputElement>
 	) => {
 		const value = +event.target.value;
-		this.setState({
+		this.setAppState({
 			numberInARow: value > 0 ? value : 1,
 		});
 	};
@@ -137,7 +144,12 @@ class App extends React.Component<{}, T.IAppState> {
 	public handleYchange = this.handleInputChange.bind(null, 'y');
 
 	public render() {
-		const { initialX, initialY, numberInARow, isFirstTurn } = this.state;
+		console.log(this.props);
+		const { appState } = this.props;
+		if (!appState) {
+			return null;
+		}
+		const { initialX, initialY, numberInARow, isFirstTurn } = appState;
 
 		return (
 			<div className={s.app}>
@@ -173,4 +185,12 @@ class App extends React.Component<{}, T.IAppState> {
 		);
 	}
 }
-export default App;
+
+const mapStateToProps = (state: IAppStore) => {
+	return { ...state };
+};
+
+export default connect(
+	mapStateToProps,
+	{ setAppState }
+)(App);
