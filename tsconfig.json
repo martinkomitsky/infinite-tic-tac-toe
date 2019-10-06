@@ -1,23 +1,24 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "target": "esnext",
-    "module": "esnext",
-    "lib": ["dom", "esnext"],
-    "allowJs": true,
-    "jsx": "react",
-    "sourceMap": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "pretty": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
-  },
-  "files": ["declare.d.ts"],
-  "awesomeTypescriptLoaderOptions": {
-    "reportFiles": ["./src/**/*"]
-  }
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"target": "esnext",
+		"module": "esnext",
+		"lib": ["dom", "esnext"],
+		"allowJs": true,
+		"jsx": "react",
+		"sourceMap": true,
+		"strict": true,
+		"noUnusedLocals": true,
+		"pretty": true,
+		"moduleResolution": "node",
+		"baseUrl": "./",
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"esModuleInterop": true
+	},
+	"files": ["declare.d.ts"],
+	"awesomeTypescriptLoaderOptions": {
+		"reportFiles": ["./src/**/*"]
+	}
 }
