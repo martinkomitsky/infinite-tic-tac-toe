@@ -34,7 +34,7 @@
 
 ```bash
 npm start
-// или
+# или
 npm run storybook
 ```
 
