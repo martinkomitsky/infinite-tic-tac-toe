@@ -23,9 +23,9 @@ export const Input: React.FunctionComponent<T.IInputProps> = props => {
 				{inputElement}
 			</fieldset>
 		) : (
-			{ inputElement }
+			<React.Fragment>{inputElement}</React.Fragment>
 		);
 	};
 
-	return <React.Fragment>{renderInput()}</React.Fragment>;
+	return renderInput();
 };
