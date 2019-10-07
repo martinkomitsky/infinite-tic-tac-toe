@@ -22,12 +22,14 @@ module.exports = (env = {}, argv) => {
 	const cssLoader = (modules = false) => ({
 		loader: 'css-loader',
 		options: {
-			modules: modules ? {
-				localIdentName:
-					argv.mode === 'production'
-						? '[hash:10]'
-						: '[name]__[local]_[hash:5]',
-			} : false,
+			modules: modules
+				? {
+						localIdentName:
+							argv.mode === 'production'
+								? '[hash:10]'
+								: '[name]__[local]_[hash:5]',
+				  }
+				: false,
 			localsConvention: 'camelCase',
 		},
 	});
@@ -53,7 +55,7 @@ module.exports = (env = {}, argv) => {
 				compress: true,
 				https: true,
 				port: 9002,
-				// open: 'Google Chrome',
+				open: 'Google Chrome',
 			},
 			devtool: 'source-map',
 			module: {
@@ -61,21 +63,13 @@ module.exports = (env = {}, argv) => {
 					{
 						test: /\.module\.css?$/,
 						include: loaderInclude,
-						use: [
-							miniCssLoader,
-							cssLoader(true),
-							postCssLoader,
-						],
+						use: [miniCssLoader, cssLoader(true), postCssLoader],
 					},
 					{
 						test: /\.css?$/,
 						exclude: /\.module\.css$/,
 						include: loaderInclude,
-						use: [
-							miniCssLoader,
-							cssLoader(),
-							postCssLoader,
-						],
+						use: [miniCssLoader, cssLoader(), postCssLoader],
 					},
 				],
 			},
