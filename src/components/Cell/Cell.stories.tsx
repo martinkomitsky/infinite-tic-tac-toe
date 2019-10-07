@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { Cell } from './Cell';
@@ -8,6 +9,8 @@ const stories = storiesOf('Infinite Tic-Tac-Toe|Cell', module).addParameters({
 		sidebar: require('./README.md'),
 	},
 });
+
+stories.addDecorator(withKnobs);
 
 const props: {
 	circleValue: boolean;
@@ -31,7 +34,7 @@ stories.add('initial with hint', () => (
 	<React.Fragment>
 		<Cell
 			index={props.index}
-			hint={props.hint}
+			hint={boolean('Show hint', props.hint)}
 			onClick={action('clicked')}
 		/>
 	</React.Fragment>
@@ -41,7 +44,7 @@ stories.add('with "X"', () => (
 	<React.Fragment>
 		<Cell
 			index={props.index}
-			value={props.crossValue}
+			value={boolean('Render "X"', props.crossValue)}
 			onClick={action('clicked')}
 		/>
 	</React.Fragment>
@@ -51,7 +54,7 @@ stories.add('with "O"', () => (
 	<React.Fragment>
 		<Cell
 			index={props.index}
-			value={props.circleValue}
+			value={boolean('Render "X"', props.circleValue)}
 			onClick={action('clicked')}
 		/>
 	</React.Fragment>
