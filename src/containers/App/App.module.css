@@ -36,6 +36,12 @@
 		5px 6px 1px #eee, 7px 6px 1px #ccc;
 }
 
+@media (max-width: 1440px) {
+	.fieldWinOverlay {
+		font-size: 3rem;
+	}
+}
+
 .fieldWinOverlayShown {
 	display: flex;
 }

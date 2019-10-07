@@ -9,6 +9,15 @@
 	border-radius: 3px;
 	transition: background-color 0.25s;
 	box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+	font-size: 100px;
+}
+
+@media (max-width: 1440px) {
+	.cell {
+		width: 50px;
+		height: 50px;
+		font-size: 50px;
+	}
 }
 
 .cell:hover {
@@ -25,7 +34,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 100px;
 	text-shadow: -1px -1px 10px rgba(150, 150, 150, 0.7);
 }
 
