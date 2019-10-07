@@ -15,6 +15,10 @@
 	background: #e2e2e2;
 }
 
+.cell:active {
+	background: #ccc;
+}
+
 .cellIcon::before {
 	width: 100%;
 	height: 100%;

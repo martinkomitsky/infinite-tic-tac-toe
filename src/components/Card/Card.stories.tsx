@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { Card } from './Card';
 
-const stories = storiesOf('Karaoke|Card', module).addParameters({
+const stories = storiesOf('Infinite Tic-Tac-Toe|Card', module).addParameters({
 	readme: {
 		sidebar: require('./README.md'),
 	},
