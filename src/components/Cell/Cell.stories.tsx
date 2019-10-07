@@ -3,6 +3,7 @@ import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { Cell } from './Cell';
+import { props } from './Cell.common';
 
 const stories = storiesOf('Infinite Tic-Tac-Toe|Cell', module).addParameters({
 	readme: {
@@ -11,18 +12,6 @@ const stories = storiesOf('Infinite Tic-Tac-Toe|Cell', module).addParameters({
 });
 
 stories.addDecorator(withKnobs);
-
-const props: {
-	circleValue: boolean;
-	crossValue: boolean;
-	hint: boolean;
-	index: [number, number];
-} = {
-	circleValue: false,
-	crossValue: true,
-	hint: true,
-	index: [0, 0],
-};
 
 stories.add('initial', () => (
 	<React.Fragment>

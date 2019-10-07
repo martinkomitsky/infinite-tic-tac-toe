@@ -4,5 +4,5 @@ export interface ICellProps {
 	value?: boolean;
 	hint?: boolean;
 	index: TCellIndex;
-	onClick: (index: TCellIndex) => void;
+	onClick?: (index: TCellIndex) => void;
 }

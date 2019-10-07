@@ -7,7 +7,9 @@ export const Cell: React.FunctionComponent<T.ICellProps> = props => {
 	const { value, onClick, hint, index } = props;
 
 	const handleClick = () => {
-		onClick(index);
+		if (onClick) {
+			onClick(index);
+		}
 	};
 
 	const classNames = classnames(s.cellIcon, {
