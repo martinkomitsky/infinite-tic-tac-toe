@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Card } from '../../components/Card';
 import { Cell } from '../../components/Cell';
+import { Input } from '../../components/Input';
 import { IAppStore, initialState, setAppState } from '../../store';
 import '../../types';
 import { checkWin } from '../../utils';
@@ -165,20 +166,26 @@ class App extends React.Component<T.IAppProps, {}> {
 		});
 		const winPhrase = `${!turn ? 'Crosses' : 'Circles'} have won!`;
 
-		const field = (
+		const inputs = (
 			<div className={s.inputContainer}>
-				<input
+				<Input
+					legend="X"
 					type="number"
+					title="Положение нуля по X"
 					value={initialX}
 					onChange={this.handleXchange}
 				/>
-				<input
+				<Input
+					legend="Y"
 					type="number"
+					title="Положение нуля по Y"
 					value={initialY}
 					onChange={this.handleYchange}
 				/>
-				<input
+				<Input
+					legend="C"
 					type="number"
+					title="Победное количество фигур в ряд для победы (C)"
 					min="1"
 					value={numberInARow}
 					onChange={this.handleNumberInARowChange}
@@ -195,7 +202,7 @@ class App extends React.Component<T.IAppProps, {}> {
 							<React.Fragment>
 								<div className={fieldClassNames}>
 									{this.renderRows()}
-									{field}
+									{inputs}
 								</div>
 								<div className={overlayClassNames}>
 									{winPhrase}

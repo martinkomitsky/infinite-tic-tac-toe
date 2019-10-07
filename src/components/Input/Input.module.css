@@ -1,0 +1,36 @@
+.input {
+	font-family: 'Roboto', sans-serif;
+	width: 50px;
+	border-color: rgba(0, 0, 0, 0.23);
+	border-width: 1px;
+	margin: 0 1px;
+	border-radius: 4px;
+	padding: 2px 4px;
+}
+
+.inputBorderless {
+	border: 0;
+}
+
+.inputFieldSet {
+	font-family: 'Roboto', sans-serif;
+	padding: 0 1px 0 3px;
+	border-width: 1px;
+	border-radius: 4px;
+	border-color: rgba(0, 0, 0, 0.23);
+}
+
+.input:focus,
+.inputFieldSet:focus-within {
+	outline: none;
+	border-color: #1976d2;
+}
+
+.input:disabled {
+	color: rgba(0, 0, 0, 0.38);
+	border-color: #ccc;
+}
+
+.inputLegend {
+	font-size: 0.6rem;
+}
